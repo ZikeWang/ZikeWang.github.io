@@ -94,12 +94,12 @@
 <meta property="og:site_name" content="Submarine">
 <meta property="og:description" content="为了保证开发环境和生产环境的一致性，另外由于有系统洁癖，所以打算在Mac上的一些开发放在虚拟环境中进行。这里以CentOS 7为例来介绍使用Mac+Vagrant+VirtualBox来搭建虚拟环境的方法和过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://kkprince.top/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/Users/kk/hexo/source/_posts/Mac下使用Vagrant配置CentOS虚拟环境/vagrant-add.png">
-<meta property="og:updated_time" content="2018-05-09T08:20:25.843Z">
+<meta property="og:image" content="http://kkprince.top/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/vagrant-add.png">
+<meta property="og:updated_time" content="2018-05-09T08:23:49.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下使用Vagrant配置CentOS虚拟环境">
 <meta name="twitter:description" content="为了保证开发环境和生产环境的一致性，另外由于有系统洁癖，所以打算在Mac上的一些开发放在虚拟环境中进行。这里以CentOS 7为例来介绍使用Mac+Vagrant+VirtualBox来搭建虚拟环境的方法和过程。">
-<meta name="twitter:image" content="http://kkprince.top/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/Users/kk/hexo/source/_posts/Mac下使用Vagrant配置CentOS虚拟环境/vagrant-add.png">
+<meta name="twitter:image" content="http://kkprince.top/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/vagrant-add.png">
 
 
 
@@ -444,7 +444,7 @@
 <h3 id="配置开发环境"><a href="#配置开发环境" class="headerlink" title="配置开发环境"></a>配置开发环境</h3><p>首先配置开发目录，创建目录<code>~/vagrant_project</code> 来存放所有的vagrant项目，并创建子目录<code>~/vagrant_project/CentOS7</code> 作为该Box的工作目录。创建完工作目录后，我们可以将下载好的 <strong>.box</strong> 文件移动到<code>~/vagrant_project/CentOS7</code>中存放以方便管理。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">mkdir vagrant_project</span><br><span class="line"><span class="built_in">cd</span> vagrant_project</span><br><span class="line">mkdir CentOS7</span><br><span class="line"><span class="built_in">cd</span> CentOS7</span><br></pre></td></tr></table></figure>
 <p>接下来我们利用下载好的 <strong>.box</strong> 文件手动添加box，其格式为 <code>vagrant box add 名称 路径</code> ，其中名称是管理box所取的名称，路径是 <strong>.box</strong> 文件所在的路径（这里我将其重命名为了CentOS7180301.box）。</p>
-<p><img src="/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/Users/kk/hexo/source/_posts/Mac下使用Vagrant配置CentOS虚拟环境/vagrant-add.png" alt="vagrant box add执行结果"></p>
+<p><img src="/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/vagrant-add.png" alt="vagrant box add执行结果"></p>
 <p>然后。</p>
 
       
