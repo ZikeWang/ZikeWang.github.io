@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="容器,Docker,CRIU,迁移,Linux," />
+  <meta name="keywords" content="Mac,开发环境,vscode,Golang," />
 
 
 
@@ -86,18 +86,20 @@
 
 
 
-<meta name="description" content="Docker是一个开源的应用容器引擎，CRIU是一个在 Linux 用户空间 (userspace) 上实现了 checkpoint/restore 功能的开源工具。目前Docker已经支持与CRIU进行整合以管理容器内运行的进程的完整生命周期。本文介绍了利用docker+CRIU实现简单容器应用在主机上的两台虚拟机之间迁移的实验。">
-<meta name="keywords" content="容器,Docker,CRIU,迁移,Linux">
+<meta name="description" content="记录使用vscode进行go开发时，vscode配置上遇到的一些坑及解决方案。">
+<meta name="keywords" content="Mac,开发环境,vscode,Golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用CRIU实现简单容器的迁移">
-<meta property="og:url" content="http://kkprince.top/2018/01/22/使用CRIU实现简单容器的迁移/index.html">
+<meta property="og:title" content="使用vscode配置golang开发环境踩过的坑">
+<meta property="og:url" content="http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/index.html">
 <meta property="og:site_name" content="Submarine">
-<meta property="og:description" content="Docker是一个开源的应用容器引擎，CRIU是一个在 Linux 用户空间 (userspace) 上实现了 checkpoint/restore 功能的开源工具。目前Docker已经支持与CRIU进行整合以管理容器内运行的进程的完整生命周期。本文介绍了利用docker+CRIU实现简单容器应用在主机上的两台虚拟机之间迁移的实验。">
+<meta property="og:description" content="记录使用vscode进行go开发时，vscode配置上遇到的一些坑及解决方案。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-08T10:44:43.025Z">
+<meta property="og:image" content="http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/net.png">
+<meta property="og:updated_time" content="2019-04-14T16:04:56.142Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用CRIU实现简单容器的迁移">
-<meta name="twitter:description" content="Docker是一个开源的应用容器引擎，CRIU是一个在 Linux 用户空间 (userspace) 上实现了 checkpoint/restore 功能的开源工具。目前Docker已经支持与CRIU进行整合以管理容器内运行的进程的完整生命周期。本文介绍了利用docker+CRIU实现简单容器应用在主机上的两台虚拟机之间迁移的实验。">
+<meta name="twitter:title" content="使用vscode配置golang开发环境踩过的坑">
+<meta name="twitter:description" content="记录使用vscode进行go开发时，vscode配置上遇到的一些坑及解决方案。">
+<meta name="twitter:image" content="http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/net.png">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://kkprince.top/2018/01/22/使用CRIU实现简单容器的迁移/"/>
+  <link rel="canonical" href="http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/"/>
 
 
 
 
 
-  <title>使用CRIU实现简单容器的迁移 | Submarine</title>
+  <title>使用vscode配置golang开发环境踩过的坑 | Submarine</title>
   
 
 
@@ -304,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kkprince.top/2018/01/22/使用CRIU实现简单容器的迁移/">
+    <link itemprop="mainEntityOfPage" href="http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zike">
@@ -321,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用CRIU实现简单容器的迁移</h1>
+          <h1 class="post-title" itemprop="name headline">使用vscode配置golang开发环境踩过的坑</h1>
         
 
         <div class="post-meta">
@@ -333,8 +335,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-22T19:02:58+08:00">
-                2018-01-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-14T22:40:54+08:00">
+                2019-04-14
               </time>
             
 
@@ -356,8 +358,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/容器/" itemprop="url" rel="index">
-                    <span itemprop="name">容器</span>
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
                   </a>
                 </span>
 
@@ -387,7 +389,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,026 字
+                  240 字
                 </span>
               
 
@@ -403,7 +405,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  8 分钟
+                  1 分钟
                 </span>
               
             </div>
@@ -424,70 +426,14 @@
       
 
       
-        <p><a href="https://www.docker.com/what-docker" target="_blank" rel="noopener">Docker</a>是一个开源的应用容器引擎，<a href="https://criu.org/Main_Page" target="_blank" rel="noopener">CRIU</a>是一个在 Linux 用户空间 (userspace) 上实现了 checkpoint/restore 功能的开源工具。目前Docker已经支持与CRIU进行整合以管理容器内运行的进程的完整生命周期。本文介绍了利用docker+CRIU实现简单容器应用在主机上的两台虚拟机之间迁移的实验。<br><a id="more"></a></p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p><strong>Host</strong>：Window 10 pro 64bit<br><strong>VM</strong>：Ubuntu 14.04.5-amd64<br><strong>Docker version</strong>：17.06.0-ce<br><strong>CRIU version</strong>：3.7</p>
-<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="Docker的安装"><a href="#Docker的安装" class="headerlink" title="Docker的安装"></a>Docker的安装</h3><p>更新apt包的索引</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-<p>安装软件包以允许apt通过HTTPS使用仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
-<p>添加Docker的官方GPG密钥</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-<p>设置仓库为stable</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br></pre></td></tr></table></figure>
-<p>再次更新apt包的索引</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-<p>查看docker可用的版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache madison docker-ce</span><br></pre></td></tr></table></figure>
-<p>这次实验我选择的是17.06.0的版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker-ce=17.06.0~ce-0~ubuntu</span><br></pre></td></tr></table></figure>
-<p>利用CRIU进行检查点恢复的功能只在docker的实验模式中可用，因此还需使用以下命令开启docker的实验模式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"&#123;\"experimental\": true&#125;"</span> &gt;&gt; /etc/docker/daemon.json</span><br><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
-<p>到这里，就完成了虚拟机中docker的配置。</p>
-<h3 id="CRIU的安装"><a href="#CRIU的安装" class="headerlink" title="CRIU的安装"></a>CRIU的安装</h3><p>由于CRIU项目已开源，可以到github直接获取其<a href="https://github.com/checkpoint-restore/criu" target="_blank" rel="noopener">源码</a>，解压后得到文件夹<br><code>criu-master</code>。<br>获取源码后，在拟机中安装相应的依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install --no-install-recommends git build-essential libprotobuf-dev libprotobuf-c0-dev protobuf-c-compiler protobuf-compiler python-protobuf libnl-3-dev libpth-dev pkg-config libcap-dev asciidoc xmlto libnet1-dev python-ipaddr iproute2</span><br></pre></td></tr></table></figure>
-<p>在文件夹<code>criu-master</code>使用make和make install进行安装。要注意的是 <strong>make install</strong> 需要在<code>root</code> 权限下执行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<p>检查CRIU是否安装成功，正常情况下会显示<code>looks good</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criu check</span><br></pre></td></tr></table></figure>
-<p>到这里，就完成了CRIU的配置。</p>
-<h3 id="ssh的配置"><a href="#ssh的配置" class="headerlink" title="ssh的配置"></a>ssh的配置</h3><p>本次实验需要将VM1中生成检查点文件传输到VM2中，因此这里还需配置两台虚拟机之间的免密通信。由于两台虚拟机是在同一主机下，所以在VM1上可以直接ping的通VM2。<br>安装ssh相关的服务，安装完成后即可使用scp命令来进行文件传输</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh openssh-server</span><br></pre></td></tr></table></figure>
-<p>在VM1上生成RSA密钥，由于是在root权限下进行的，所以生成的私钥和公钥均保存在目录<code>/root/.ssh</code>下面</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen –t rsa</span><br></pre></td></tr></table></figure>
-<p>为了实现免密通信，需要将VM1上生成的公钥保存在VM2，因此需要在VM2中设置<code>.ssh</code>目录并新建文件<code>authorized_keys</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line">touch authorized_keys</span><br></pre></td></tr></table></figure>
-<p>用scp命令将VM1上的公钥id_rsa.pub拷贝到VM2上，这一步需要输入一次VM2的密码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -p /root/.ssh/id_rsa.pub user@ip_addr:~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-<p>到这里，就完成了虚拟机间免密通信的配置。</p>
-<h3 id="容器的创建与检查点"><a href="#容器的创建与检查点" class="headerlink" title="容器的创建与检查点"></a>容器的创建与检查点</h3><p>首先在VM1中 <strong>创建并启动</strong> 一个简单的容器应用looper，该容器启动后每秒循环加1计数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name looper --security-opt seccomp:unconfined busybox  \</span><br><span class="line">         /bin/sh -c <span class="string">'i=0; while true; do echo $i; i=$(expr $i + 1); sleep 1; done'</span></span><br></pre></td></tr></table></figure>
-<p>创建容器后会返回一个由一大串数字和字母组成的长ID，稍后创建的检查点文件也会生成在以该长ID命名的文件夹下，为了方便后面查找，使用docker的<code>--checkpoint-dir</code>命令来指定检查点文件存放的目录，这里创建了名为<code>checkpoint1</code>的检查点并将文件存放在<code>/tmp</code>目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker checkpoint create --checkpoint-dir=/tmp looper checkpoint1</span><br></pre></td></tr></table></figure>
-<p>通过命令<code>docker logs looper</code>可以看到该容器已停止运行，并且目录<code>/tmp/ID/checkpoints/checkpoint1</code>下生成有checkpoint1的相关检查点文件</p>
-<h3 id="容器的迁移与恢复"><a href="#容器的迁移与恢复" class="headerlink" title="容器的迁移与恢复"></a>容器的迁移与恢复</h3><p>在VM2中 <strong>创建</strong> 一个相同的容器looper-clone，该容器将利用VM1中容器looper的检查点文件进行启动，并从looper停止的地方继续运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker create --name looper-clone --security-opt seccomp:unconfined busybox \</span><br><span class="line">         /bin/sh -c <span class="string">'i=0; while true; do echo $i; i=$(expr $i + 1); sleep 1; done'</span></span><br></pre></td></tr></table></figure>
-<p>将VM1中生成的检查点文件传输到VM2中，同样为了后面方便使用，把文件存放在VM2的<code>/tmp</code>目录下，这里传输的是文件夹，所以要使用<code>scp -r</code>指令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /tmp/ID/checkpoints/checkpoint1 user@ip_addr:/tmp</span><br></pre></td></tr></table></figure>
-<p>在VM2中利用checkpoint1的检查点文件启动looper-clone，这里也是使用docker的<code>--checkpoint-dir</code>命令来指定检查点文件存放的目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start --checkpoint-dir=/tmp --checkpoint=checkpoint1 looper-clone</span><br></pre></td></tr></table></figure>
-<p>通过命令<code>docker logs looper-clone</code>可以看到容器从looper停止的地方启动运行并开始计数。</p>
-<h3 id="脚本实现半自动迁移"><a href="#脚本实现半自动迁移" class="headerlink" title="脚本实现半自动迁移"></a>脚本实现半自动迁移</h3><p>手动输入命令行每次测起来比较麻烦，所以分别在两个虚拟机上写了shell脚本来控制迁移的进行。<br>源节点VM1的shell脚本如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">docker checkpoint  create --checkpoint-dir=/tmp looper checkpoint1</span><br><span class="line">results=$(docker inspect -f '&#123;&#123;.Id&#125;&#125;' looper)</span><br><span class="line">scp -r /tmp/$results/checkpoints/checkpoint1 kk@192.168.222.136:/tmp</span><br><span class="line">echo succeed</span><br></pre></td></tr></table></figure>
-<p>目的节点VM2的shell脚本如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">while($</span><span class="bash">(find /tmp -name checkpoint1))</span></span><br><span class="line">do</span><br><span class="line">    echo waiting</span><br><span class="line">done</span><br><span class="line">docker create --name looper-clone --security-opt seccomp:unconfined busybox \</span><br><span class="line">         /bin/sh -c 'i=0; while true; do echo $i; i=$(expr $i + 1); sleep 1; done'</span><br><span class="line">docker start --checkpoint-dir=/tmp --checkpoint=checkpoint1 looper-clone</span><br></pre></td></tr></table></figure>
-<p>VM2中起初的想法是当VM1的 <code>checkpoint</code> 文件发送到VM2后会产生一个触发的操作，然后VM2中开始执行相应的脚本，但还没想好怎么去解决触发的问题，所以用了一个很笨的循环方法，不断的去查找目录下是否有 <code>checkpoint</code> 文件，如果有的话表示VM2已经接受完成则开始执行后面的脚本。这样的话在启动VM1的脚本时就需要启动VM2的脚本执行循环检测，性能很低，后续还有待改进。</p>
-<h3 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h3><p>未完待续。。。</p>
-<h2 id="注意问题和一些思考"><a href="#注意问题和一些思考" class="headerlink" title="注意问题和一些思考"></a>注意问题和一些思考</h2><ol>
-<li>Docker命令和CRIU需要在root权限下使用</li>
-<li>同一台虚拟机Docker的版本和CRIU的 <strong>版本</strong> 问题。我在进行此实验时遇到过一个问题，就是在一台虚拟机上安装了Docker和CRIU后，对计数容器进行checkpoint操作，这时可以创建检查点并生成检查点文件，但使用<code>docker logs</code>命令发现容器并没有停止运行，那么问题就出在了CRIU上，因为CRIU创建检查点会将进程freeze。起初认为是安装不完整的原因，但重新安装后依然存在这个问题，由于整个迁移是靠Docker与CRIU的整合，于是我开始考虑兼容性的问题。在安装Docker时，最开始是使用命令<code>sudo apt-get install docker-ce</code>，在没有显示指明版本的情况下安装的是docker的最新版本（17.12.0-ce）。CRIU是从github获取的代码也是最新版本（3.7），由于CRIU还很不成熟稳定，我怀疑是Docker的版本太新CRIU还无法很好的兼容，所以尝试降了几个子版本就解决了这个问题。</li>
-<li>两台虚拟机CRIU的 <strong>版本</strong> 问题。由于此次实验是利用VM1上CRIU进行checkpoint操作，利用VM2上的CRIU进行restore操作，因此两台虚拟机上CRIU的版本最好相同或接近。由于我的VM1是之前配置好的（CRIU version=3.2），VM2是新配置的（CRIU version=3.7），导致最初实验在VM2上利用VM1生成的检查点文件进行restore时始终报错criu failed，但在VM2上进行本地checkpoint/restore测试没有任何问题，说明CRIU功能完善，加上碰到过前面2.中的问题，所以很自然的就想到可能是版本不一致，在升级了VM1中的CRIU后实验成功。</li>
-</ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li>Get Docker CE for Ubuntu : <a href="https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/" target="_blank" rel="noopener">https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/</a></li>
-<li>Installation-CRIU : <a href="https://criu.org/Installation" target="_blank" rel="noopener">https://criu.org/Installation</a></li>
-<li>Docker-CRIU : <a href="https://criu.org/Docker" target="_blank" rel="noopener">https://criu.org/Docker</a></li>
-<li>Github/CRIU : <a href="https://github.com/checkpoint-restore/criu" target="_blank" rel="noopener">https://github.com/checkpoint-restore/criu</a></li>
-</ul>
+        <p>记录使用vscode进行go开发时，vscode配置上遇到的一些坑及解决方案。</p>
+<a id="more"></a>
+<h2 id="安装tools"><a href="#安装tools" class="headerlink" title="安装tools"></a>安装tools</h2><p><strong>描述</strong> 出现诸如 <code>The &quot;goreturns&quot; command is not available. Use &quot;go get -v github.com/sqs/goreturns&quot; to install.</code> 的提示，可以选择install或者install all。但选择install或者install all后均安装失败：<code>Installing github.com/sqs/goreturns FAILED</code>，应该是国内网络问题。。。<br><strong>方案</strong> 创建目录 <strong><em>$GOPATH/src/golang.org/x</em></strong> ，在目录下执行 <code>git clone https://github.com/golang/tools.git tools</code>后，再次出现提示时选择install all即可。除golint继续FAILED外，其余均SUCCEEDED。</p>
+<h2 id="安装package"><a href="#安装package" class="headerlink" title="安装package"></a>安装package</h2><p><strong>描述</strong> problem中提示：cannot find package “golang.org/x/net/…”，除net外，还有text，crypto等。（text添加后会报出很多problems，暂时没有找到解决的方案，未添加）<br><img src="/2019/04/14/使用vscode配置golang开发环境踩过的坑/net.png" alt="缺失package-net"><br><strong>方案</strong> 在 <strong><em>$GOROOT/src/golang.org/x</em></strong> 目录下，执行命令 <code>git clone https://github.com/golang/net.git net</code>即可。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1163456" target="_blank" rel="noopener">在VSCode中成功安装Go相关插件问题：tools failed to install.</a></p>
+<p><a href="https://blog.csdn.net/dong_beijing/article/details/79653327" target="_blank" rel="noopener">https://blog.csdn.net/dong_beijing/article/details/79653327</a></p>
+</blockquote>
 
       
     </div>
@@ -508,7 +454,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://kkprince.top/2018/01/22/使用CRIU实现简单容器的迁移/" title="使用CRIU实现简单容器的迁移">http://kkprince.top/2018/01/22/使用CRIU实现简单容器的迁移/</a>
+    <a href="http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/" title="使用vscode配置golang开发环境踩过的坑">http://kkprince.top/2019/04/14/使用vscode配置golang开发环境踩过的坑/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -523,15 +469,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/容器/" rel="tag"><i class="fa fa-tag"></i> 容器</a>
+            <a href="/tags/Mac/" rel="tag"><i class="fa fa-tag"></i> Mac</a>
           
-            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+            <a href="/tags/开发环境/" rel="tag"><i class="fa fa-tag"></i> 开发环境</a>
           
-            <a href="/tags/CRIU/" rel="tag"><i class="fa fa-tag"></i> CRIU</a>
+            <a href="/tags/vscode/" rel="tag"><i class="fa fa-tag"></i> vscode</a>
           
-            <a href="/tags/迁移/" rel="tag"><i class="fa fa-tag"></i> 迁移</a>
-          
-            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+            <a href="/tags/Golang/" rel="tag"><i class="fa fa-tag"></i> Golang</a>
           
         </div>
       
@@ -544,15 +488,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/14/Mac下配置Golang环境/" rel="next" title="Mac下配置Golang环境">
+                <i class="fa fa-chevron-left"></i> Mac下配置Golang环境
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/09/Mac下使用Vagrant配置CentOS虚拟环境/" rel="prev" title="Mac下使用Vagrant配置CentOS虚拟环境">
-                Mac下使用Vagrant配置CentOS虚拟环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -703,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验环境"><span class="nav-number">1.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验步骤"><span class="nav-number">2.</span> <span class="nav-text">实验步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的安装"><span class="nav-number">2.1.</span> <span class="nav-text">Docker的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRIU的安装"><span class="nav-number">2.2.</span> <span class="nav-text">CRIU的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh的配置"><span class="nav-number">2.3.</span> <span class="nav-text">ssh的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器的创建与检查点"><span class="nav-number">2.4.</span> <span class="nav-text">容器的创建与检查点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器的迁移与恢复"><span class="nav-number">2.5.</span> <span class="nav-text">容器的迁移与恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本实现半自动迁移"><span class="nav-number">2.6.</span> <span class="nav-text">脚本实现半自动迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化方案"><span class="nav-number">2.7.</span> <span class="nav-text">优化方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意问题和一些思考"><span class="nav-number">3.</span> <span class="nav-text">注意问题和一些思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">4.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装tools"><span class="nav-number">1.</span> <span class="nav-text">安装tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装package"><span class="nav-number">2.</span> <span class="nav-text">安装package</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
